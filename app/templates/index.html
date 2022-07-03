@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link href="https://unpkg.com/mvp.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header>
+      <h1>DATA Collector</h1>
+    </header>
+    <center>
+      <form id="search_form" , action="/search">
+        <input
+          type="search"
+          placeholder="search keyword"
+          id="search_input"
+          name="q"
+        />
+        <button type="submit">검색</button>
+      </form>
+    </center>
+    <main>
+      {% if images %}
+      <!--  -->
+      <center>
+        <h3 style="color: gray">{{images|length}}개 데이터 수집..</h3>
+      </center>
+      <section>
+        {% for image in images %}
+        <div>
+          <img src="{{image.link}}" width="150px" height="200px" />
+          <p>
+            {% if image.title|length > 10 %}
+            <!--  -->
+            {{image.title[:10]}}...
+            <!--  -->
+            {% else %} {{image.title}} {% endif %}
+          </p>
+          <p>{{image.height}}x{{image.width}}</p>
+        </div>
+        {% endfor %}
+      </section>
+
+      <hr />
+      <!-- {{images}} -->
+      <!--  -->
+      {% else %}
+      <center><h3 style="color: gray">Please Input Keyword...</h3></center>
+      {% endif %}
+    </main>
+  </body>
+</html>
